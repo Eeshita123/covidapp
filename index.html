@@ -1,0 +1,241 @@
+<!DOCTYPE html><html><head>
+    <script src="p5.js"></script>
+    <script src="p5.dom.min.js"></script>
+    <script src="p5.sound.min.js"></script>
+<script src="./p5.play.js"></script>
+
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-database.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyA7VRsXeZDxGBOiJ-SQtON-CBPuXW3aiJ8",
+    authDomain: "corona-app-firebase.firebaseapp.com",
+    databaseURL: "https://corona-app-firebase.firebaseio.com",
+    projectId: "corona-app-firebase",
+    storageBucket: "corona-app-firebase.appspot.com",
+    messagingSenderId: "78658710535",
+    appId: "1:78658710535:web:75a2296479dc8eb7d60ea2"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+</script>
+
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <meta charset="utf-8">
+
+    <style>
+
+body{
+
+background:#fae;
+
+}
+
+.dropdown{
+
+  background:white;
+
+  border:1px solid #aaa;
+
+  width:200px;
+
+  height:30px;
+
+  box-shadow: 2px 2px 2px #999;
+
+  border-radius:5px;
+
+  color: #333;
+
+  line-height:30px;
+
+  user-select:none;
+
+  cursor:pointer;
+
+  display:inline-block;
+
+  font-size:1.2em;
+
+  font-family:Arial;
+
+  position:relative;
+
+}
+
+.dropdown_value{
+
+  display:inline-block;
+
+  padding-left: 5px;
+
+}
+
+.dropdown_arrow{
+
+  position:absolute;
+
+  right:5px;
+
+  top:0px;
+
+  color: #ccc;
+
+  font-size : 25px;
+
+}
+
+.dropdown_panel{
+
+position:absolute;
+
+background:transparent;
+
+width: calc(100% + 11px);
+
+z-index:9999;
+
+height:203px;
+
+left:-1px;
+
+top:28px;
+
+overflow:hidden;
+
+pointer-events:none;
+
+}
+
+.dropdown_items{
+
+  position:absolute;
+
+  pointer-events:all;
+
+  top:0px;
+
+  width: calc(100% + 11px);
+
+  max-height: 180px;
+
+background:white;
+
+border-bottom-left-radius:5px;
+
+border-bottom-right-radius:5px;
+
+
+z-index:9999;
+
+height:203px;
+
+left:-1px;
+
+box-shadow: 2px 2px 2px #999;
+
+overflow-y:auto;
+
+border:1px solid #aaa;
+
+transform:translate(0px , -200px);
+
+}
+
+.dropdown_item{
+
+padding:5px;
+
+}
+
+.dropdown_item:hover{
+
+background:#eee;
+  
+}
+
+    </style>
+
+  </head>
+  <body>
+      <script src="sketch.js"></script>
+      <script src="Welcome.js"></script>
+      <script src="Greeting.js"></script>
+      <script src="Questionnaire.js"></script>
+
+      <div id = 'dd1'>
+      </div>
+
+      <script>
+
+        function Dropdown(o){
+
+          this.options = o;
+
+          this.init = function(){
+
+            this.elem = document.getElementById(this.options.id);
+
+            var val = this.options.val;
+
+            var html = `<div class= 'dropdown'>
+            
+              <div class= 'dropdown_value'>${val}</div>
+
+              <div class= 'dropdown_arrow'></div>
+
+              <div class= 'dropdown_panel'>
+                
+                <div class= 'dropdown_items'>
+                  </div>
+                
+                </div>
+            
+            
+            </div>`;
+
+            this.elem.innerHTML = html;
+
+            var elem = this.elem;
+
+            this.items = elem.querySelector(".dropdown_items");
+
+            var data = this.options.data;
+            html = "";
+            data.forEach(function(elem){
+
+              html += `<div class= 'dropdown'>${elem}</div>`;
+
+            });
+
+            this.items.innerHTML = html;
+
+          }
+
+          this.init();
+
+          return this;
+
+        }
+
+        var dd1 = new Dropdown({
+
+          id : 'dd1',
+
+          val : 'cat'
+
+          data : ['age','age1','age2','age3','age4','age5','age6','age7','age8','age9','age10']
+
+        });
+
+
+      </script>
+  
+
+</body></html>
